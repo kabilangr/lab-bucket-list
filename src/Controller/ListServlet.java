@@ -29,7 +29,8 @@ public class ListServlet extends HttpServlet {
 		String sortbyrank = request.getParameter("sortbyrank");
 		String remove = request.getParameter("delete");
 		String reset = request.getParameter("reset");
-		
+		TouristPlace ob=new TouristPlace(name,destination,rank);
+		ListOperations ob1=new ListOperations ();
 		System.out.println("Entering into list");
 	
 		if(add!=null) {
@@ -37,7 +38,7 @@ public class ListServlet extends HttpServlet {
 			System.out.println("calling add equals method");
 			
 		
-			request.setAttribute("bucketList", /*pass the list variable */);
+			request.setAttribute("bucketList", ob1.add(ob));
 			request.setAttribute("message", "user added successfully");
 			RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/list.jsp");
 			rd.forward(request, response);
@@ -46,7 +47,7 @@ public class ListServlet extends HttpServlet {
 		if(remove!=null) {
 			// call the remove method and store the return list in a list variable
 			
-			request.setAttribute("bucketList", /*pass the list variable */);
+			request.setAttribute("bucketList", ob1.remove(ob));
 			RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/list.jsp");
 			rd.forward(request, response);
 		}
